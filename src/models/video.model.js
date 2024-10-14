@@ -1,3 +1,17 @@
+/**
+  id string pk
+  videoFile string
+  thumbnail string
+  owner ObjectId users
+  title string
+  description string
+  duration number
+  views number
+  isPublished boolean
+  createdAt Date
+  updatedAt Date
+ */
+
 import mongose, { Schema } from "mongoose";
 import mongooseAggregatePaginate from "mongoose-aggregate-paginate-v2";
 

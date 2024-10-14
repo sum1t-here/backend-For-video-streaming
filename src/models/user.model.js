@@ -1,3 +1,17 @@
+/**
+  id string pk
+  watchHistory ObjectId[] videos
+  username string
+  email string
+  fullName string
+  avatar string
+  coverImage string
+  password string
+  refreshToken string
+  createdAt Date
+  updatedAt Date
+ */
+
 import mongoose, { Schema } from "mongoose";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
@@ -6,46 +20,53 @@ const userSchema = new Schema(
   {
     username: {
       type: String,
-      required: true,
-      unique: true,
-      lowercase: true,
-      trim: true,
-      index: true,
+      required: true, // Username is mandatory
+      unique: true, // Must be unique (no duplicate usernames)
+      lowercase: true, // Automatically converts to lowercase for consistency
+      trim: true, // Trims leading and trailing whitespaces
+      index: true, // Indexed for faster lookup in queries
     },
+
     email: {
       type: String,
-      required: true,
-      unique: true,
-      lowercase: true,
-      trim: true,
+      required: true, // Email is mandatory
+      unique: true, // Must be unique (no duplicate emails)
+      lowercase: true, // Automatically converts to lowercase for consistency
+      trim: true, // Trims leading and trailing whitespaces
     },
+
     fullname: {
       type: String,
-      required: true,
-      trim: true,
-      index: true,
+      required: true, // Full name is mandatory
+      trim: true, // Trims leading and trailing whitespaces
+      index: true, // Indexed for faster searches
     },
+
     avatar: {
       type: String,
-      required: true,
+      required: true, // Avatar is mandatory (likely a URL or file path)
     },
+
     coverimage: {
-      type: String,
+      type: String, // Optional field for cover image
     },
+
     watchHistory: {
-      type: Schema.Types.ObjectId,
-      ref: "Video",
+      type: Schema.Types.ObjectId, // Stores an ObjectId referencing another document
+      ref: "Video", // Refers to the 'Video' model
     },
+
     password: {
       type: String,
-      required: [true, "Password is required"],
+      required: [true, "Password is required"], // Password is mandatory with a custom error message
     },
+
     refreshToken: {
-      type: String,
+      type: String, // Optional field for storing a refresh token
     },
   },
   {
-    timestamps: true,
+    timestamps: true, // Automatically adds 'createdAt' and 'updatedAt' fields
   }
 );
 
