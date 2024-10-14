@@ -47,7 +47,7 @@ const userSchema = new Schema(
       required: true, // Avatar is mandatory (likely a URL or file path)
     },
 
-    coverimage: {
+    coverImage: {
       type: String, // Optional field for cover image
     },
 
